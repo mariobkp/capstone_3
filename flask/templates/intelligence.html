@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<div class="content">
+    
+    <h1 style="text-align: center">Product Intelligence Dashboard</h1>
+
+    <div class="content-section">
+        <div class="media">
+            <img class="rounded-circle account-img" src="https://breadandboxersusa.com/pub_images/original/634-05_T-SHIRT_CLASSIC_BEIGE.jpg?extend=copy&width=80&method=fit&height=80&type=webp">
+            <div class="media-body">
+                <h2 class="account-heading">Current item</h2>
+                <p class="text-secondary">Current keywords</p>
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+    <form method="POST" action="" enctype="multipart/form-data">
+        <fieldset class="form-group">
+            <div class="form-group", style="text-align: center">
+                {{ form.picture.label() }}
+                {{ form.picture(class="form-control-file") }}
+                {% if form.picture.errors %}
+                    {% for error in form.picture.errors %}
+                        <span class="text-danger">{{ error }}</span></br>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                {{ form.tags.label(class="form-control-label") }}
+                
+                {{ form.tags(class="form-control form-control-lg") }}
+                
+            </div>
+
+            <div class="form-group", style="text-align: center">
+                {{ form.submit(class="btn btn-dark") }}
+            </div>
+
+        </fieldset>
+
+    </form>
+
+    <br>
+<!--
+    <form action="/" method="POST" style="text-align: center">
+        
+        <input type="text" name="content" id="content">
+
+        <input type="submit" value="Keywords">
+    
+    </form>
+-->
+
+    <br>
+
+    {% if similar_items|length < 1 %}
+
+    <h4 style="text-align: center">Please enter an item image (.jpg or .png format) and/or product keywords</h4>
+
+    {% else %}
+
+    <table>
+        <tr>
+
+            <th>Listing</th>
+            <th>Item Image</th>
+            <th>Keywords</th>
+            <th>Price</th>
+            <th>Actions</th>
+        
+        </tr>
+        {% for item in similar_items %}
+            <tr>
+
+                <td>{{ item.title }}</td>
+                <td>{{ item.image }}</td>
+                <td>{{ item.tags }}</td>
+                <td>{{ item.price }}</td>
+
+
+            </tr>
+        {% endfor %}
+        <tr>
+
+            <td>
+                    
+                <a href="">New Item</a>
+
+                <br>
+
+                <a href="">Update Keywords</a>
+
+            </td>
+
+        </tr>
+    </table>
+
+    {% endif %}
+
+    <br>
+
+
+</div>
+
+{% endblock body %}
