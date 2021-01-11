@@ -103,7 +103,7 @@ def get_index_data(soup):
 
 def write_csv(data, url):
 
-    with open('dress_shoes.csv', 'a') as csvfile:
+    with open('sneaker2.csv', 'a') as csvfile:
         writer = csv.writer(csvfile)
 
         row = [data['title'], data['price'], data['currency'], data['desc'], data['image'], url]
@@ -113,7 +113,7 @@ def write_csv(data, url):
 
 def main():
     
-    url = 'https://www.ebay.com/b/Mens-Dress-Shoes/53120/bn_61106?rt=nc&LH_ItemCondition=3000'
+    url = 'https://www.ebay.com/b/Mens-Athletic-Shoes/15709/bn_57918?rt=nc&LH_ItemCondition=3000'
     
     page = 1
 
