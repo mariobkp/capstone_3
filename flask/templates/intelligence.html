@@ -7,13 +7,18 @@
     <h1 style="text-align: center">Product Intelligence Dashboard</h1>
 
     <div class="content-section">
+        <h2 class="account-heading" style="float: right">Current item</h2>
         <div class="media">
-            <img class="rounded-circle account-img" src="https://breadandboxersusa.com/pub_images/original/634-05_T-SHIRT_CLASSIC_BEIGE.jpg?extend=copy&width=80&method=fit&height=80&type=webp">
+            <img class="rounded-circle account-img" src="{{ image_file }}">
             <div class="media-body">
-                <h2 class="account-heading">Current item</h2>
-                <p class="text-secondary">Current keywords</p>
+                
+                <p class="text-secondary" style='float: left;'>{{ keywords }}</p>
             </div>
         </div>
+        <div class="media">
+            <h2 style="float: right">{{ recommended_price }}</h2>
+        </div>
+        <br style="clear:both;"/>
     </div>
 
     <br>
@@ -58,50 +63,23 @@
 
     <br>
 
-    {% if similar_items|length < 1 %}
+    {% if d|length < 1 %}
 
     <h4 style="text-align: center">Please enter an item image (.jpg or .png format) and/or product keywords</h4>
 
     {% else %}
-
-    <table>
-        <tr>
-
-            <th>Listing</th>
-            <th>Item Image</th>
-            <th>Keywords</th>
-            <th>Price</th>
-            <th>Actions</th>
-        
-        </tr>
-        {% for item in similar_items %}
-            <tr>
-
-                <td>{{ item.title }}</td>
-                <td>{{ item.image }}</td>
-                <td>{{ item.tags }}</td>
-                <td>{{ item.price }}</td>
-
-
-            </tr>
-        {% endfor %}
-        <tr>
-
-            <td>
-                    
-                <a href="">New Item</a>
-
-                <br>
-
-                <a href="">Update Keywords</a>
-
-            </td>
-
-        </tr>
-    </table>
+    <table class="table table-dark table-striped"> 
+    {% for i in d %} 
+        <tr> 
+            <td>{{i.title}}</td> 
+            <td>{{i.image_link}}</td> 
+            <td>{{i.price}}</td> 
+            <td>{{i.tags}}</td> 
+        </tr> 
+    {% endfor %} 
 
     {% endif %}
-
+    </table>
     <br>
 
 

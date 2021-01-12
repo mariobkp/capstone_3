@@ -1,3 +1,8 @@
+import os
+import json
+import pandas as pd
+
+
 # Flask
 from flask import Flask, render_template, url_for, request, redirect, flash
 from forms import EnterDataForm
@@ -9,6 +14,8 @@ from forms import EnterDataForm
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'reallystrongandsecretkey69'
+
+
 
 @app.route('/', methods=['POST', 'GET'])
 
@@ -45,28 +52,50 @@ def update():
 
 @app.route('/about')
 def about():
-    return render_template("about.html", title="About") 
+    return redirect('https://github.com/mariobkp/capstone_3')
 
 @app.route('/contact')
 def contact():
     return render_template("contact.html", title='Contact')
 
 
-def process_image(form_picture):
-    pass
+def save_picture(form_picture):
+    picture_path = os.path.join(app.root_path, 'static/', form_picture.filename)
+    output_size = (224, 224)
+    form_picture.save(picture_path)
 
 def process_text(form_tags):
     pass
 
+
+
 @app.route('/intelligence', methods=["GET", "POST"])
 def intelligence():
+
+    image_file = url_for('static', filename='imgs/' + 'default.jpg')
+
+    keywords = 'Keywords or tags will be displayed here'
+
+    recommended_price = "Recommended price range"
+
     form = EnterDataForm()
     if form.validate_on_submit():
-        # if form.picture.data:
-            # image_features = process_image(form.picture.data)
-        # if form.tags.data:
-        return redirect(url_for('intelligence'))
-    return render_template("intelligence.html", title='Intelligence', form=form)  
+        if form.picture.data:
+            picture_file = save_picture(form.picture.data)
+        if form.tags.data:
+            return redirect(url_for('intelligence'))
+
+    
+    df=pd.read_csv('../mens.csv', index_col=0)
+    df=df.iloc[:5]
+    json_records = df.reset_index().to_json(orient ='records') 
+    d = [] 
+    d = json.loads(json_records) 
+
+    return render_template("intelligence.html", title='Intelligence', image_file = image_file, 
+        keywords = keywords, recommended_price=recommended_price, form=form, d=d)  
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
