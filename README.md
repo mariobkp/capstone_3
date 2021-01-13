@@ -6,12 +6,16 @@
 * The "fast fashion" trend of cheap-in-price and cheap-in-quality, will maybe arguably making self-expression through clothing easier, has had a terrible effect on the environment. Discarded clothing, rather than being recycled or repaired, end up in landfills at best, litter at worst.
 * As individual consumers, we can do a small part in changing our mindset and our habits by buying and selling used clothing rather than the "use and discard" mentality.
 * In an effort to aid and encourage the practice of reselling clothing, I would like to create a tool to aid thrift stores, consigners, resellers in more efficient pricing.
-* I propose to scrape clothing sales data from eBay, store both the image and some text data in AWS S3, and create a Flask app pricing tool. The interface will allow users to provide an image of an item, ostensibly a store/reseller/buyer trying to gauge the "value" of an item of clothing, and optionally provide the brand name. The app will then return similar items along with the respective prices.
+* I proposed to scrape clothing sales data from eBay, store both the image and some text data, and create a Flask app pricing tool. The interface will allow users to provide an image of an item, ostensibly a store/reseller/buyer trying to gauge the "value" of an item of clothing, and optionally provide the brand name or other relevant text. The app will then return similar items along with the respective prices.
 * In an effort to limit the scope, I would like to look only at men's clothing and shoes for this project. May also be best to look only at current eBay listings rather than already sold items.
 
 * Multi-input model taking both image and text data to return a price range estimate determined from similar listings
 
 # Graphics and Images and Stats here
+
+* Please take a look at some of the following graphics. Of course the burden of lessening fast fashion's impact on the environment is largely incumbent on the large corporations who have historically exacerbated the issue, if not still doing so. But it's my opinion that we as individual consumers can still make choices to minimize our own impact.
+
+* Furthermore, in the age of the side gig, working from home, and multiple income streams, it can also be a way to make money (if only ultimately to buy different used clothes).
 
 ## Data Scraping/Cleaning
 
