@@ -15,8 +15,8 @@ import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
 from tensorflow.keras.preprocessing.image import ImageDataGenerator, array_to_img, img_to_array, load_img
-import tensorflow_hub as hub
-import tensorflow_datasets as tfds
+# import tensorflow_hub as hub
+# import tensorflow_datasets as tfds
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Activation, Dense
 from tensorflow.keras.optimizers import Adam
@@ -233,13 +233,13 @@ def intelligence():
         
         pairwise_dist = pairwise_distances(extracted_features[pid], extracted_features[doc_id].reshape(1,-1))
 
-        df = mens[['image_link','title', 'price']].loc[indices[:5]]
+        df = mens[['image_link','title', 'price']].loc[indices[1:6]]
 
         json_records = df.reset_index().to_json(orient ='records') 
         d = [] 
         d = json.loads(json_records)
 
-        recommended_price = '$' + str(np.round(np.mean(df.price), 2))
+        recommended_price = 'Recommended price range: $' + str(np.round(np.min(df.price),2)) + ' to ' + '$' + str(np.round(np.max(df.price),2))
 
         return render_template("intelligence.html", title='Intelligence', image_file = image_file, 
                                 keywords = keywords, recommended_price=recommended_price, d=d)  
@@ -247,7 +247,7 @@ def intelligence():
     else:
         indices = np.argsort(pairwise_dist.flatten())
 
-        df = mens[['image_link','title', 'price']].loc[indices[:5]]
+        df = mens[['image_link','title', 'price']].loc[indices[1:6]]
 
         json_records = df.reset_index().to_json(orient ='records') 
         d = [] 
