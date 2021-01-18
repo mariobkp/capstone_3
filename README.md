@@ -30,7 +30,7 @@
   - Suits
   - Sweaters
   - T-shirts
-  # Image of representing each catageory Here
+
 * In keeping with the spirit of the project, I only scraped pre-owned items, however I ended up scraping almost the entirety of eBay's used clothing listings.
 * In all, there were over 400,000 rows of listing data (each row corresponding to a listing).
 * After cleaning and filtering, I ended up with 10,000 items per category totalling 140,000 items.
@@ -42,7 +42,7 @@
 * MobileNet
   * MobileNet is a streamlined and (as the name implies) mobile version of the Xception architecture. This model represents "going wider" with respect to it's layers.
  
- * ResNet
+* ResNet
   * Residual Net, or ResNet, represents "going deeper" and specifically sought to address the question of why adding more layers doesn't always increase accuracy.
   * The "residual" part of the title refers to its solution of not trying to map directly, but map to residuals.
   * ResNet50 is the lightweight model in the ResNet family.
