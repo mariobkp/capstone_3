@@ -11,16 +11,9 @@
 
 * Multi-input model taking both image and text data to return a price range estimate determined from similar listings
 
-# Graphics and Images and Stats here
-
-* Please take a look at some of the following graphics. Of course the burden of lessening fast fashion's impact on the environment is largely incumbent on the large corporations who have historically exacerbated the issue, if not still doing so. But it's my opinion that we as individual consumers can still make choices to minimize our own impact.
-
 * Furthermore, in the age of the side gig, working from home, and multiple income streams, it can also be a way to make money (if only ultimately to buy different used clothes).
 
 ## Data Scraping/Cleaning
-
-* May also consider using weights like ImageNet or Fashion MNIST.
-* AWS, BeautifulSoup, sklearn, TensorFlow, PySpark, Flask.
 
 * I first scraped my data from eBay. As I was already scraping the data from eBay, I decided I'd use their item classification breakdown as follows:
   - Boots
@@ -48,23 +41,17 @@
 
 * MobileNet
   * MobileNet is a streamlined and (as the name implies) mobile version of the Xception architecture. This model represents "going wider" with respect to it's layers.
-  
-  # Image Here
  
  * ResNet
   * Residual Net, or ResNet, represents "going deeper" and specifically sought to address the question of why adding more layers doesn't always increase accuracy.
   * The "residual" part of the title refers to its solution of not trying to map directly, but map to residuals.
   * ResNet50 is the lightweight model in the ResNet family.
-  
-  # Image Here
 
 * Based on out of the box performance testing both models with images from my dataset, I decided to proceed with ResNet50 for image feature extraction.
 
 * These two models are exceedingly complex and training them, even these "smaller" versions, wouldn't be practical in many cases and luckily through the miracle of transfer learning you or I can tune these models to our own tasks.
 
 * ResNet takes in a 224 x 224 pixel image with the 3 color channels and runs it through a specific preprocess method.
-
-# Image Here
 
 * ResNet is structured as 5 blocks of convolutional layers.
 
@@ -85,8 +72,6 @@
 * In addition to the image data, I also scraped each listing for the seller-added text attributes (brand, size, color, material, etc.) describing the item. These keywords or tags were then coalesced with the listing title and category into what's called a "bag of words.
 
 * Because many of the listings, especially within the same category, would have similar descriptors, I used a TF-IDF vectorizer to  transform the word data into a usable number format
-
-# Image here
 
 * I created a custom list of "stop words," meaning words that are filtered out, and limited the number of features to 1000. Vectorizing words can lead to a sparse set if the number of features isn't limited, meaning the data isn't "concentrated" enough for effective analysis.
 
